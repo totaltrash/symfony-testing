@@ -1,0 +1,16 @@
+{
+    "name": "totaltrash/symfony-testing",
+    "description": "PHPUnit and Mink testing helpers",
+    "authors": [
+        {
+            "name": "Darren Black",
+            "email": "dblack@totaltrash.net"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Totaltrash\\Testing": ""
+        }
+    },
+    "target-dir": "Totaltrash/Testing"
+}
