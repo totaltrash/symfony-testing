@@ -50,7 +50,7 @@ class FixtureLoader
      * @param sting $sequenceName The name of the sequence to reset
      * @param int   $next         The next number to use in the sequence
      *
-     * @return DataContext
+     * @return FixtureLoader
      */
     public function resetSequence($sequenceName, $next = 1)
     {
@@ -70,6 +70,33 @@ class FixtureLoader
     {
         foreach ($sequences as $sequence) {
             $this->resetSequence($sequence, $next);
+        }
+    }
+
+    /**
+     * Reset a table.
+     * 
+     * @param sting $tableName The name of the table to reset
+     *
+     * @return FixtureLoader
+     */
+    public function resetTable($tableName)
+    {
+        $rsm = new ResultSetMapping();
+        $this->entityManager->createNativeQuery("TRUNCATE $tableName CASCADE", $rsm)->execute();
+
+        return $this;
+    }
+
+    /**
+     * Reset an array of tables.
+     * 
+     * @param sting[] $tables   The names of the tables to reset
+     */
+    public function resetTables(array $tables = array())
+    {
+        foreach ($tables as $table) {
+            $this->resetTable($table);
         }
     }
 
